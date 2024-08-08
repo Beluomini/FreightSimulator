@@ -1,0 +1,11 @@
+export class LogisticOperator {
+  id?: string;
+  name: string;
+  weightCost: number;
+  distanceMult: number;
+  distanceMult100: number;
+  distanceMult500: number;
+  deliveryTime: number;
+  deliveryTime100: number;
+  deliveryTime500: number;
+}

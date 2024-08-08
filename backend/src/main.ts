@@ -2,12 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-async function freightAPI() {
+async function shippingAPI() {
   const app = await NestFactory.create(AppModule);
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Freight Simulator')
-    .setDescription('Freight Simulator API Documentation')
+    .setTitle('Shipping Simulator')
+    .setDescription('Shipping Simulator API Documentation')
     .setVersion('1.0')
     .build();
 
@@ -17,4 +17,4 @@ async function freightAPI() {
   await app.listen(process.env.PORT || 3000);
   console.log(`Application is running on port: ${process.env.PORT}`);
 }
-freightAPI();
+shippingAPI();
