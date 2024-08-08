@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model LogisticOperator {
+  id              String   @id @default(uuid())
+  name            String
+  weightCost      Float
+  distanceMult    Float
+  distanceMult100 Float
+  distanceMult500 Float
+  deliveryTime    Float
+  deliveryTime100 Float
+  deliveryTime500 Float
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("logistic-operator")
+}
+
+model Simulation {
+  id              String   @id @default(uuid())
+  clientName      String
+  fromAddress     String
+  toAddress       String
+  productHeight   Float
+  productWidth    Float
+  productDepth    Float
+  productWeight   Float
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("simulation")
+}
