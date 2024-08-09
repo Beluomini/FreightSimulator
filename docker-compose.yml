@@ -12,5 +12,22 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  api:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env.development.local
+    ports:
+      - '${PORT}:${PORT}'
+    environment:
+      - PORT = ${PORT}
+      - DATABASE_URL = ${DATABASE_URL}
+    volumes:
+      - .:/usr/src/api
+      - /usr/src/api/node_modules
 volumes:
   postgres:
