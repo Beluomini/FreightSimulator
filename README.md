@@ -1,4 +1,4 @@
-# Freight Simulator
+# Shipping Simulator
 
 The goal of this project is to create an environment where you can calculate the value and shipping time of objects based on the distance they will be sent, their dimensions and their weight.
 
@@ -18,7 +18,7 @@ docker-compose up
 
 ## 🧾 Documentation
 
-The documentation was written with Swagger and can be viwed when the app is runing in [{API_URL}/api#/](http://localhost:3000/api#/)
+The documentation was written with Swagger and can be viwed when the app is runing in [{API_URL}/docs](http://localhost:5000/docs)
 
 ## ⚙️ Configuration
 
