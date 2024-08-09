@@ -29,7 +29,7 @@ export class LogisticOperatorController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.logisticOperatorService.findOne(+id);
+    return this.logisticOperatorService.findOne(id);
   }
 
   @Patch(':id')
@@ -37,11 +37,11 @@ export class LogisticOperatorController {
     @Param('id') id: string,
     @Body() updateLogisticOperatorDto: UpdateLogisticOperatorDto,
   ) {
-    return this.logisticOperatorService.update(+id, updateLogisticOperatorDto);
+    return this.logisticOperatorService.update(id, updateLogisticOperatorDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.logisticOperatorService.remove(+id);
+    return this.logisticOperatorService.remove(id);
   }
 }

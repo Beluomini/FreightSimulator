@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateLogisticOperatorDto } from './dto/create-logistic-operator.dto';
 import { UpdateLogisticOperatorDto } from './dto/update-logistic-operator.dto';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../database/prisma.service';
 
 @Injectable()
 export class LogisticOperatorRepository {
@@ -15,15 +15,15 @@ export class LogisticOperatorRepository {
     return `This action return all logisticOperators`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} logisticOperator`;
   }
 
-  update(id: number, updateLogisticOperatorDto: UpdateLogisticOperatorDto) {
+  update(id: string, updateLogisticOperatorDto: UpdateLogisticOperatorDto) {
     return `This action updates a #${id} logisticOperator to ${updateLogisticOperatorDto}`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} logisticOperator`;
   }
 }

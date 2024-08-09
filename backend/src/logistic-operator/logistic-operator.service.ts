@@ -15,15 +15,15 @@ export class LogisticOperatorService {
     return this.repository.findMany();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.repository.findOne(id);
   }
 
-  update(id: number, updateLogisticOperatorDto: UpdateLogisticOperatorDto) {
+  update(id: string, updateLogisticOperatorDto: UpdateLogisticOperatorDto) {
     return this.repository.update(id, updateLogisticOperatorDto);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.repository.remove(id);
   }
 }
