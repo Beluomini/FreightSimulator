@@ -65,25 +65,20 @@ export default function Form() {
     // @ts-ignore-next-line
     data["token"] = "";
     const config = {
-      method: "post",
-      url: "/api/form",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
+      method: "get",
+      url: process.env.NEXT_PUBLIC_API_URL + "/logistic-operator",
     };
     try {
       const response = await axios(config);
-      if (response.status === 200) {
-        setResult("Good result.");
+      if (response.status === 200 || response.status === 201) {
+        setResult("data" + response.data);
         setResultColor("text-green-500");
         reset();
       }
     } catch (err: any) {
-      setResult(err.response.data.message + ": " + err.response.statusText);
+      setResult("error: " + err);
       setResultColor("text-red-500");
     }
-    setResult("data" + JSON.stringify(data));
   };
 
   return (
