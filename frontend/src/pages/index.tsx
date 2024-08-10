@@ -22,7 +22,7 @@ export default function Home() {
             The full code can be seen on my{" "}
             <Link
               className="font-bold underline"
-              href="https://github.com/ozcancelik/nextjs-mail-form"
+              href="https://github.com/Beluomini/ShippingSimulator"
               target={"_blank"}
             >
               Github
