@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function shippingAPI() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Shipping Simulator')
@@ -14,7 +15,7 @@ async function shippingAPI() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(process.env.PORT || 5001);
-  console.log(`Application is running on port: ${process.env.PORT}`);
+  await app.listen(process.env.API_PORT || 5001);
+  console.log(`Application is running on port: ${process.env.API_PORT}`);
 }
 shippingAPI();
