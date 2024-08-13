@@ -8,22 +8,31 @@ export class LogisticOperatorRepository {
   constructor(private prisma: PrismaService) {}
 
   create(createLogisticOperatorDto: CreateLogisticOperatorDto) {
-    return `This action adds the ${createLogisticOperatorDto} logisticOperator`;
+    return this.prisma.logisticOperator.create({
+      data: createLogisticOperatorDto,
+    });
   }
 
   findMany() {
-    return `This action return all logisticOperators`;
+    return this.prisma.logisticOperator.findMany();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} logisticOperator`;
+  async findOne(id: string) {
+    return await this.prisma.logisticOperator.findUnique({
+      where: { id },
+    });
   }
 
   update(id: string, updateLogisticOperatorDto: UpdateLogisticOperatorDto) {
-    return `This action updates a #${id} logisticOperator to ${updateLogisticOperatorDto}`;
+    return this.prisma.logisticOperator.update({
+      where: { id },
+      data: updateLogisticOperatorDto,
+    });
   }
 
   remove(id: string) {
-    return `This action removes a #${id} logisticOperator`;
+    return this.prisma.logisticOperator.delete({
+      where: { id },
+    });
   }
 }
