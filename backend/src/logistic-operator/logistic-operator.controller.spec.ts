@@ -3,6 +3,7 @@ import { LogisticOperatorController } from './logistic-operator.controller';
 import { LogisticOperatorService } from './logistic-operator.service';
 import { PrismaService } from '../database/prisma.service';
 import { LogisticOperatorRepository } from './logistic-operator.repository';
+import { HttpStatus } from '@nestjs/common';
 
 describe('LogisticOperatorController', () => {
   let controller: LogisticOperatorController;
@@ -44,7 +45,10 @@ describe('LogisticOperatorController', () => {
         },
       ];
       service.findAll = jest.fn().mockResolvedValue(testLO);
-      expect(await controller.findAll()).toBe(testLO);
+      const response = await controller.findAll();
+      expect(response.statusCode).toBe(HttpStatus.OK);
+      expect(response.message).toBe('Logistic Operators fetched successfully');
+      expect(response.data).toBe(testLO);
       expect(service.findAll).toHaveBeenCalledTimes(1);
     });
   });
@@ -63,7 +67,10 @@ describe('LogisticOperatorController', () => {
         deliveryTime500: 6,
       };
       service.findOne = jest.fn().mockResolvedValue(testLO);
-      expect(await controller.findOne('1')).toBe(testLO);
+      const response = await controller.findOne('1');
+      expect(response.statusCode).toBe(HttpStatus.OK);
+      expect(response.message).toBe('Logistic Operator fetched successfully');
+      expect(response.data).toBe(testLO);
       expect(service.findOne).toHaveBeenCalledTimes(1);
     });
   });
@@ -82,7 +89,10 @@ describe('LogisticOperatorController', () => {
         deliveryTime500: 6,
       };
       service.create = jest.fn().mockResolvedValue(testLO);
-      expect(await controller.create(testLO)).toBe(testLO);
+      const response = await controller.create(testLO);
+      expect(response.statusCode).toBe(HttpStatus.CREATED);
+      expect(response.message).toBe('Logistic Operator created successfully');
+      expect(response.data).toBe(testLO);
       expect(service.create).toHaveBeenCalledTimes(1);
     });
   });
@@ -101,7 +111,10 @@ describe('LogisticOperatorController', () => {
         deliveryTime500: 6,
       };
       service.update = jest.fn().mockResolvedValue(testLO);
-      expect(await controller.update('1', testLO)).toBe(testLO);
+      const response = await controller.update('1', testLO);
+      expect(response.statusCode).toBe(HttpStatus.OK);
+      expect(response.message).toBe('Logistic Operator updated successfully');
+      expect(response.data).toBe(testLO);
       expect(service.update).toHaveBeenCalledTimes(1);
     });
   });
@@ -109,7 +122,10 @@ describe('LogisticOperatorController', () => {
   describe('remove', () => {
     it('should remove a logistic operator', async () => {
       service.remove = jest.fn().mockResolvedValue('1');
-      expect(await controller.remove('1')).toBe('1');
+      const response = await controller.remove('1');
+      expect(response.statusCode).toBe(HttpStatus.OK);
+      expect(response.message).toBe('Logistic Operator deleted successfully');
+      expect(response.data).toBe('1');
       expect(service.remove).toHaveBeenCalledTimes(1);
     });
   });

@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { LogisticOperatorService } from './logistic-operator.service';
 import { LogisticOperatorRepository } from './logistic-operator.repository';
 import { PrismaService } from '../database/prisma.service';
+import { NotFoundException } from '@nestjs/common';
 
 describe('LogisticOperatorService', () => {
   let service: LogisticOperatorService;
@@ -71,6 +72,18 @@ describe('LogisticOperatorService', () => {
     });
   });
 
+  describe('findOne - Not Found', () => {
+    it('should return a not found error', async () => {
+      repository.findOne = jest.fn().mockResolvedValue(null);
+      try {
+        await service.findOne('1');
+      } catch (error) {
+        expect(error).toBeInstanceOf(NotFoundException);
+        expect(error.message).toBe('Logistic Operator not found');
+      }
+    });
+  });
+
   describe('create', () => {
     it('should create a logistic operator', async () => {
       const newLO = {
@@ -102,6 +115,7 @@ describe('LogisticOperatorService', () => {
         deliveryTime100: 3,
         deliveryTime500: 6,
       };
+      repository.findOne = jest.fn().mockResolvedValue({ id: '1' });
       repository.update = jest.fn().mockResolvedValue(updatedLO);
       expect(await service.update('1', updatedLO)).toBe(updatedLO);
       expect(repository.update).toHaveBeenCalledTimes(1);
@@ -110,6 +124,7 @@ describe('LogisticOperatorService', () => {
 
   describe('remove', () => {
     it('should remove a logistic operator', async () => {
+      repository.findOne = jest.fn().mockResolvedValue({ id: '1' });
       repository.remove = jest.fn().mockResolvedValue({ id: '1' });
       expect(await service.remove('1')).toEqual({ id: '1' });
       expect(repository.remove).toHaveBeenCalledTimes(1);
