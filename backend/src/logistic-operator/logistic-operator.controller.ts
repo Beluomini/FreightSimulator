@@ -12,6 +12,7 @@ import { LogisticOperatorService } from './logistic-operator.service';
 import { CreateLogisticOperatorDto } from './dto/create-logistic-operator.dto';
 import { UpdateLogisticOperatorDto } from './dto/update-logistic-operator.dto';
 import { ApiResponse } from '@nestjs/swagger';
+import { ResponseLogisticOperatorDto } from './dto/response-logistic-operator.dto';
 
 @Controller('logistic-operator')
 export class LogisticOperatorController {
@@ -33,9 +34,8 @@ export class LogisticOperatorController {
     description: 'Error creating Logistic Operator',
   })
   async create(@Body() createLogisticOperatorDto: CreateLogisticOperatorDto) {
-    const createdLogisticOperator = await this.logisticOperatorService.create(
-      createLogisticOperatorDto,
-    );
+    const createdLogisticOperator: ResponseLogisticOperatorDto =
+      await this.logisticOperatorService.create(createLogisticOperatorDto);
     return {
       statusCode: HttpStatus.CREATED,
       message: 'Logistic Operator created successfully',
@@ -53,7 +53,8 @@ export class LogisticOperatorController {
     description: 'Error creating Logistic Operator',
   })
   async findAll() {
-    const list = await this.logisticOperatorService.findAll();
+    const list: ResponseLogisticOperatorDto[] =
+      await this.logisticOperatorService.findAll();
     return {
       statusCode: HttpStatus.OK,
       message: 'Logistic Operators fetched successfully',
@@ -75,7 +76,8 @@ export class LogisticOperatorController {
     description: 'Error creating Logistic Operator',
   })
   async findOne(@Param('id') id: string) {
-    const logisticOperator = await this.logisticOperatorService.findOne(id);
+    const logisticOperator: ResponseLogisticOperatorDto =
+      await this.logisticOperatorService.findOne(id);
     return {
       statusCode: HttpStatus.OK,
       message: 'Logistic Operator fetched successfully',
@@ -100,10 +102,8 @@ export class LogisticOperatorController {
     @Param('id') id: string,
     @Body() updateLogisticOperatorDto: UpdateLogisticOperatorDto,
   ) {
-    const updatedLogisticOperator = await this.logisticOperatorService.update(
-      id,
-      updateLogisticOperatorDto,
-    );
+    const updatedLogisticOperator: ResponseLogisticOperatorDto =
+      await this.logisticOperatorService.update(id, updateLogisticOperatorDto);
     return {
       statusCode: HttpStatus.OK,
       message: 'Logistic Operator updated successfully',

@@ -2,36 +2,42 @@ import { Injectable } from '@nestjs/common';
 import { CreateLogisticOperatorDto } from './dto/create-logistic-operator.dto';
 import { UpdateLogisticOperatorDto } from './dto/update-logistic-operator.dto';
 import { PrismaService } from '../database/prisma.service';
+import { ResponseLogisticOperatorDto } from './dto/response-logistic-operator.dto';
 
 @Injectable()
 export class LogisticOperatorRepository {
   constructor(private prisma: PrismaService) {}
 
-  create(createLogisticOperatorDto: CreateLogisticOperatorDto) {
-    return this.prisma.logisticOperator.create({
+  async create(
+    createLogisticOperatorDto: CreateLogisticOperatorDto,
+  ): Promise<ResponseLogisticOperatorDto> {
+    return await this.prisma.logisticOperator.create({
       data: createLogisticOperatorDto,
     });
   }
 
-  findMany() {
-    return this.prisma.logisticOperator.findMany();
+  async findMany(): Promise<ResponseLogisticOperatorDto[]> {
+    return await this.prisma.logisticOperator.findMany();
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<ResponseLogisticOperatorDto> {
     return await this.prisma.logisticOperator.findUnique({
       where: { id },
     });
   }
 
-  update(id: string, updateLogisticOperatorDto: UpdateLogisticOperatorDto) {
-    return this.prisma.logisticOperator.update({
+  async update(
+    id: string,
+    updateLogisticOperatorDto: UpdateLogisticOperatorDto,
+  ): Promise<ResponseLogisticOperatorDto> {
+    return await this.prisma.logisticOperator.update({
       where: { id },
       data: updateLogisticOperatorDto,
     });
   }
 
-  remove(id: string) {
-    return this.prisma.logisticOperator.delete({
+  async remove(id: string): Promise<ResponseLogisticOperatorDto> {
+    return await this.prisma.logisticOperator.delete({
       where: { id },
     });
   }
