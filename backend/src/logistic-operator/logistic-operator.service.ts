@@ -32,13 +32,16 @@ export class LogisticOperatorService {
   }
 
   async findOne(id: string) {
-    const logisticOperator = await this.repository.findOne(id);
-    if (!logisticOperator) {
-      throw new NotFoundException('Logistic Operator not found');
-    }
     try {
+      const logisticOperator = await this.repository.findOne(id);
+      if (!logisticOperator) {
+        throw new NotFoundException('Logistic Operator not found');
+      }
       return logisticOperator;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new InternalServerErrorException(
         'Error fetching Logistic Operator',
       );
@@ -49,13 +52,16 @@ export class LogisticOperatorService {
     id: string,
     updateLogisticOperatorDto: UpdateLogisticOperatorDto,
   ) {
-    const logisticOperator = await this.findOne(id);
-    if (!logisticOperator) {
-      throw new NotFoundException('Logistic Operator not found');
-    }
     try {
+      const logisticOperator = await this.findOne(id);
+      if (!logisticOperator) {
+        throw new NotFoundException('Logistic Operator not found');
+      }
       return await this.repository.update(id, updateLogisticOperatorDto);
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new InternalServerErrorException(
         'Error updating Logistic Operator',
       );
@@ -63,13 +69,16 @@ export class LogisticOperatorService {
   }
 
   async remove(id: string) {
-    const logisticOperator = await this.findOne(id);
-    if (!logisticOperator) {
-      throw new NotFoundException('Logistic Operator not found');
-    }
     try {
+      const logisticOperator = await this.findOne(id);
+      if (!logisticOperator) {
+        throw new NotFoundException('Logistic Operator not found');
+      }
       return await this.repository.remove(id);
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new InternalServerErrorException(
         'Error deleting Logistic Operator',
       );
