@@ -111,9 +111,23 @@ npm test
 
     .
     ├── backend
-    │   ├──
-    │   └── 
+    │   ├── Dockerfile
+    │   ├── prisma
+    │   │   └── *shema.prisma*
+    │   ├── src
+    │   │   ├── *main.ts*
+    │   │   ├── database
+    │   │   ├── integrations
+    │   │   ├── utils
+    │   │   ├── logistic-operator
+    │   └── └── simulations
     ├── frontend
+    │   ├── Dockerfile
+    │   ├── src
+    │   │   ├── pages
+    │   │   │   └── *index.tsx*
+    │   │   ├── components
+    │   └── └── styles
     └── docker-compose.yml
 
 ## 🔃 Versioning
