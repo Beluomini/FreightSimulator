@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import Form from "../src/components/form";
+import Form from "../components/form";
 
 export default function Home() {
   return (
