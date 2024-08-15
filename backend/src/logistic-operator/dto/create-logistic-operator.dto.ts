@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateLogisticOperatorDto {
   @ApiProperty()
@@ -8,37 +8,44 @@ export class CreateLogisticOperatorDto {
   name: string;
 
   @ApiProperty()
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
+  @Min(0)
   weightCost: number;
 
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
+  @Min(0)
   distanceMult: number;
 
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
+  @Min(0)
   distanceMult100: number;
 
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
+  @Min(0)
   distanceMult500: number;
 
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
+  @Min(0)
   deliveryTime: number;
 
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
+  @Min(0)
   deliveryTime100: number;
 
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
+  @Min(0)
   deliveryTime500: number;
 }
