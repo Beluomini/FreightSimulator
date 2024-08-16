@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const mockedLogisticOperators = [
+  { id: 1, name: "Logistic Operator 1" },
+  { id: 2, name: "Logistic Operator 2" },
+  { id: 3, name: "Logistic Operator 3" },
+];
+
 interface LogisticOperator {
   id: number;
   name: string;
@@ -19,6 +25,7 @@ export default function LOList() {
         );
         setData(response.data.data);
       } catch (error) {
+        setData(mockedLogisticOperators);
         setError("Erro ao buscar dados");
         console.error("Erro ao buscar dados:", error);
       } finally {
@@ -33,7 +40,7 @@ export default function LOList() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="p-4">
+    <div className="">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         List of Logistic Operators
       </h2>
