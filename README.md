@@ -7,7 +7,9 @@ The goal of this project is to create an environment where you can calculate the
 
 ## ⚙️ Configuration
 
-The backend and frontend have unique configuration files, and, in the project root folder, there is also a configuration file for the variables used in docker. It is recommended that environment variable files be present within the backend and frontend directories in addition to the root directory for better functioning of docker-compose.
+To run using Docker, you only need the environment variables in the root folder where the docker-compose.yml file will be.
+
+If you want to run without Docker in a development environment, you need the environment variables in both the frontend and backend scopes.
 
 ### Root
 
@@ -36,13 +38,9 @@ Inside the backend folder you need to create a file named .env
 It is necessary to insert the following environment variables:
 
 ```dotenv
-PORT=FRONTED_PORT
 API_PORT=BACKEND_PORT
 GEOCODING_API_KEY=GEOCODING_API_KEY
 GEOCODING_API_ROUTE=GEOCODING_API_ROUTE
-DATABASE_USER=USER
-DATABASE_PASSWORD=PASS
-DATABASE_PORT=DATABASE_PORT
 DATABASE_URL=DATABASE_URL
 ```
 
