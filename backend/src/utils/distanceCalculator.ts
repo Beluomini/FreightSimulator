@@ -1,13 +1,13 @@
 export function calculateDistance(
-  toLatitude: string,
-  toLongitude: string,
-  fromLatitude: string,
-  fromLongitude: string,
+  toLatitude: number,
+  toLongitude: number,
+  fromLatitude: number,
+  fromLongitude: number,
 ): number {
-  const toLat = parseFloat(toLatitude);
-  const toLong = parseFloat(toLongitude);
-  const fromLat = parseFloat(fromLatitude);
-  const fromLong = parseFloat(fromLongitude);
+  const toLat = toLatitude;
+  const toLong = toLongitude;
+  const fromLat = fromLatitude;
+  const fromLong = fromLongitude;
 
   const R = 6371e3;
   const φ1 = (toLat * Math.PI) / 180;
