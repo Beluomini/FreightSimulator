@@ -11,8 +11,9 @@ import {
 import { SimulationService } from './simulation.service';
 import { CreateSimulationDto } from './dto/create-simulation.dto';
 import { UpdateSimulationDto } from './dto/update-simulation.dto';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Simulation')
 @Controller('simulation')
 export class SimulationController {
   constructor(private readonly simulationService: SimulationService) {}

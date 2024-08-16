@@ -11,9 +11,10 @@ import {
 import { LogisticOperatorService } from './logistic-operator.service';
 import { CreateLogisticOperatorDto } from './dto/create-logistic-operator.dto';
 import { UpdateLogisticOperatorDto } from './dto/update-logistic-operator.dto';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ResponseLogisticOperatorDto } from './dto/response-logistic-operator.dto';
 
+@ApiTags('Logistic Operator')
 @Controller('logistic-operator')
 export class LogisticOperatorController {
   constructor(
