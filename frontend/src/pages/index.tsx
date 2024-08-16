@@ -1,11 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-<<<<<<< HEAD
-import Form from "../src/components/form";
-import LOList from "../src/components/logisticOperatorsList";
-=======
 import Form from "../components/form";
->>>>>>> 0b4d456278a09e225569f8d2db5b326cb63f7368
+import LOList from "../components/logisticOperatorsList";
 
 export default function Home() {
   return (

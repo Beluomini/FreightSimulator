@@ -15,7 +15,7 @@ export default function LOList() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/logistic-operator",
+          process.env.NEXT_PUBLIC_API_URL + "/logistic-operator",
         );
         setData(response.data.data);
       } catch (error) {
