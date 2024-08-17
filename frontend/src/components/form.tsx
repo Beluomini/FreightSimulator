@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
+import { handleAdress } from "../utils/handleAdress";
+import { SimulationAPIResponse } from "../types/simulation";
 
 const formSchema = z.object({
   userName: z.string(),
@@ -28,7 +30,12 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function Form() {
+interface FormProps {
+  /* eslint-disable-next-line  no-unused-vars */
+  onFormSubmit: (data: SimulationAPIResponse) => void;
+}
+
+export default function Form({ onFormSubmit }: FormProps) {
   const [result, setResult] = useState<string>();
   const [resultColor, setResultColor] = useState<string>();
 
@@ -61,17 +68,49 @@ export default function Form() {
       number2: "456",
     },
   });
+
   const processForm = async (data: FormData) => {
     // @ts-ignore-next-line
-    data["token"] = "";
-    const config = {
-      method: "get",
-      url: process.env.NEXT_PUBLIC_API_URL + "/logistic-operator",
-    };
     try {
+      const adressTo = handleAdress(
+        data.address1,
+        data.number1,
+        data.neighborhood1,
+        data.city1,
+        data.state1,
+        data.cep1,
+        data.country1,
+      );
+      const adressFrom = handleAdress(
+        data.address2,
+        data.number2,
+        data.neighborhood2,
+        data.city2,
+        data.state2,
+        data.cep2,
+        data.country2,
+      );
+
+      const config = {
+        method: "post",
+        url: process.env.NEXT_PUBLIC_API_URL + "/simulation",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          clientName: data.userName,
+          fromAddress: adressFrom,
+          toAddress: adressTo,
+          productHeight: data.prodHeight,
+          productWidth: data.prodWidth,
+          productDepth: data.prodDepth,
+          productWeight: data.prodWeight,
+        },
+      };
+
       const response = await axios(config);
       if (response.status === 200 || response.status === 201) {
-        setResult("data" + response.data);
+        onFormSubmit(response.data);
         setResultColor("text-green-500");
         reset();
       }
@@ -510,14 +549,11 @@ export default function Form() {
           >
             {isSubmitting ? "Sending..." : "Send"}
           </button>
-
-          {isSubmitSuccessful && (
-            <div className={`text-right ${resultColor}`}>{result}</div>
-          )}
         </div>
 
-        
-
+        {isSubmitSuccessful && (
+          <div className={`text-right ${resultColor}`}>{result}</div>
+        )}
       </div>
     </form>
   );

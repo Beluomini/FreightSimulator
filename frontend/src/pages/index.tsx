@@ -3,8 +3,16 @@ import Link from "next/link";
 import Form from "../components/form";
 import LOList from "../components/logisticOperatorsList";
 import SimulationData from "../components/simulation";
+import { useState } from "react";
+import { SimulationAPIResponse } from "../types/simulation";
 
 export default function Home() {
+  const [simulationData, setSimulationData] = useState<SimulationAPIResponse>();
+
+  const handleFormSubmit = (data: SimulationAPIResponse) => {
+    setSimulationData(data);
+  };
+
   return (
     <>
       <div>
@@ -30,13 +38,13 @@ export default function Home() {
                 Github
               </Link>
             </p>
-            <Form />
+            <Form onFormSubmit={handleFormSubmit} />
           </div>
           <div className="md:w-1/3 flex flex-col justify-between mx-4 mb-5 my-5 rounded-lg">
             <div className=" p-5 border bg-slate-200 rounded-lg">
-              <SimulationData />
+              <SimulationData data={simulationData} />
             </div>
-            <div className="max-h-[15.3rem] overflow-y-auto p-5 border bg-slate-200 rounded-lg">
+            <div className="max-h-[14rem] overflow-y-auto p-5 border bg-slate-200 rounded-lg">
               <LOList />
             </div>
           </div>
