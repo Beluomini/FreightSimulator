@@ -22,5 +22,6 @@ export function calculateDistance(
 
   const mDistance = R * c;
   const distance = mDistance / 1000;
-  return distance;
+  const distanceRounded = Math.round(distance * 1000000) / 1000000;
+  return distanceRounded;
 }
