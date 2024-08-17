@@ -1,15 +1,22 @@
+import { LogisticOperatorResponse } from "./logistic-operator";
+
 export interface SimulationResponse {
   id: number;
-  userName: string;
-  prodHeight: number;
-  prodWidth: number;
-  prodDepth: number;
-  prodWeight: number;
+  clientName: string;
+  productHeight: number;
+  productWidth: number;
+  productDepth: number;
+  productWeight: number;
   toAddress: string;
   fromAddress: string;
   distance: number;
-  fasterLogisticOperator: string;
-  cheaperLogisticOperator: string;
+  fasterOperator: LogisticOperatorResponse;
+  cheaperOperator: LogisticOperatorResponse;
+}
+
+export interface SimulationAPIResponse {
+  statusCode: number;
+  data: SimulationResponse;
 }
 
 export interface SimulationRequest {
