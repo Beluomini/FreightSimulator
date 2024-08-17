@@ -20,8 +20,8 @@ export default function Home() {
             </p>
             <p className="mb-5 text-sm">
               This is a shipping calculator using product characteristics and
-              address latitude and longitude (Geocoding API).
-              The full code can be seen on my{" "}
+              address latitude and longitude (Geocoding API). The full code can
+              be seen on my{" "}
               <Link
                 className="font-bold underline"
                 href="https://github.com/Beluomini/ShippingSimulator"
@@ -33,11 +33,11 @@ export default function Home() {
             <Form />
           </div>
           <div className="md:w-1/3 flex flex-col justify-between mx-4 mb-5 my-5 rounded-lg">
-            <div className="max-h-[15.3rem] mb-5 overflow-y-auto p-5 border bg-slate-200 rounded-lg">
-              <LOList />
-            </div>
             <div className=" p-5 border bg-slate-200 rounded-lg">
               <SimulationData />
+            </div>
+            <div className="max-h-[15.3rem] overflow-y-auto p-5 border bg-slate-200 rounded-lg">
+              <LOList />
             </div>
           </div>
         </div>
