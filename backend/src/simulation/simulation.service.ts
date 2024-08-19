@@ -38,7 +38,12 @@ export class SimulationService {
       fromAdCoordinates.lat,
       fromAdCoordinates.lng,
     );
-    const fasterOperator = await this.findFasterLogisticOperator(distance);
+    const fasterOperator = await this.findFasterLogisticOperator(
+      distance,
+      createSimulationDto.productHeight,
+      createSimulationDto.productWidth,
+      createSimulationDto.productLength,
+    );
     const cheaperOperator = await this.findCheaperLogisticOperator(
       distance,
       createSimulationDto.productHeight,
@@ -52,15 +57,22 @@ export class SimulationService {
         distance: distance,
         fasterOperator: fasterOperator.operator,
         fasterOperatorTime: fasterOperator.time,
+        fasterOperatorPrice: fasterOperator.price,
         cheaperOperator: cheaperOperator.operator,
         cheaperOperatorPrice: cheaperOperator.price,
+        cheaperOperatorTime: cheaperOperator.time,
       };
     } catch (error) {
       throw new InternalServerErrorException('Error creating Simulation');
     }
   }
 
-  private async findFasterLogisticOperator(distance: number) {
+  private async findFasterLogisticOperator(
+    distance: number,
+    productHeight: number,
+    productWidth: number,
+    productLength: number,
+  ) {
     const logisticOperators: ResponseLogisticOperatorDto[] =
       await this.logisticOperatorService.findAll();
     const promises = logisticOperators.map(async (operator) => {
@@ -68,16 +80,28 @@ export class SimulationService {
         return {
           operator: operator,
           time: operator.deliveryTime,
+          price:
+            operator.distanceMult *
+            ((productHeight * productWidth * productLength) /
+              operator.cubicFactor),
         };
       } else if (distance <= 500) {
         return {
           operator: operator,
           time: operator.deliveryTime100,
+          price:
+            operator.distanceMult100 *
+            ((productHeight * productWidth * productLength) /
+              operator.cubicFactor),
         };
       } else {
         return {
           operator: operator,
           time: operator.deliveryTime500,
+          price:
+            operator.distanceMult500 *
+            ((productHeight * productWidth * productLength) /
+              operator.cubicFactor),
         };
       }
     });
@@ -98,6 +122,7 @@ export class SimulationService {
       if (distance <= 100) {
         return {
           operator: operator,
+          time: operator.deliveryTime,
           price:
             operator.distanceMult *
             ((productHeight * productWidth * productLength) /
@@ -106,6 +131,7 @@ export class SimulationService {
       } else if (distance <= 500) {
         return {
           operator: operator,
+          time: operator.deliveryTime100,
           price:
             operator.distanceMult100 *
             ((productHeight * productWidth * productLength) /
@@ -114,6 +140,7 @@ export class SimulationService {
       } else {
         return {
           operator: operator,
+          time: operator.deliveryTime500,
           price:
             operator.distanceMult500 *
             ((productHeight * productWidth * productLength) /

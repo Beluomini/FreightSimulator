@@ -33,7 +33,13 @@ export class ResponseSimulationDto {
   fasterOperatorTime: number;
 
   @ApiProperty()
+  fasterOperatorPrice: number;
+
+  @ApiProperty()
   cheaperOperator: CreateLogisticOperatorDto;
+
+  @ApiProperty()
+  cheaperOperatorTime: number;
 
   @ApiProperty()
   cheaperOperatorPrice: number;
