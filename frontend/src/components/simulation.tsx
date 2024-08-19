@@ -136,14 +136,18 @@ export default function SimulationData({ data }: SimulationDataProps) {
             <div>
               <p className="text-gray-500">Delivery Time</p>
               <div className="min-h-[25px] flex justify-end pr-2 items-center border border-gray-500 pl-2 rounded-md">
-                <p className="sm:text-sm">{lastSimData.fasterOperator.deliveryTime}</p>
+                <p className="sm:text-sm">
+                  {lastSimData.fasterOperator.deliveryTime}
+                </p>
                 <p className="pl-1 text-gray-500 sm:text-sm">days</p>
               </div>
             </div>
             <div>
               <p className="text-gray-500">Cost</p>
               <div className="min-h-[25px] flex justify-end pr-2 items-center border border-gray-500 pl-2 rounded-md">
-                <p className="sm:text-sm">{lastSimData.fasterOperator.weightCost}</p>
+                <p className="sm:text-sm">
+                  {lastSimData.fasterOperator.weightCost}
+                </p>
                 <p className="pl-1 text-gray-500 sm:text-sm">R$</p>
               </div>
             </div>
@@ -162,21 +166,24 @@ export default function SimulationData({ data }: SimulationDataProps) {
             <div>
               <p className="text-gray-500">Delivery Time</p>
               <div className="min-h-[25px] flex justify-end pr-2 items-center border border-gray-500 pl-2 rounded-md">
-                <p className="sm:text-sm">{lastSimData.cheaperOperator.deliveryTime}</p>
+                <p className="sm:text-sm">
+                  {lastSimData.cheaperOperator.deliveryTime}
+                </p>
                 <p className="pl-1 text-gray-500 sm:text-sm">days</p>
               </div>
             </div>
             <div>
               <p className="text-gray-500">Cost</p>
               <div className="min-h-[25px] flex justify-end pr-2 items-center border border-gray-500 pl-2 rounded-md">
-                <p className="sm:text-sm">{lastSimData.cheaperOperator.weightCost}</p>
+                <p className="sm:text-sm">
+                  {lastSimData.cheaperOperator.weightCost}
+                </p>
                 <p className="pl-1 text-gray-500 sm:text-sm">R$</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 }
