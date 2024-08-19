@@ -91,6 +91,13 @@ Finally, just run the app:
 npm run dev
 ```
 
+## 🚪Ports
+
+When the application is running, the ports referenced in the environment variables of the project root, if using Docker, or in the frontend and backend service directories:
+- Backend: API_PORT
+- Frontend: PORT
+- PostgreSQL: DATABASE_PORT
+
 ## 🧾 Documentation
 
 The documentation was written with Swagger and can be viwed when the app is runing in [{API_URL}/docs](http://localhost:5000/docs)
