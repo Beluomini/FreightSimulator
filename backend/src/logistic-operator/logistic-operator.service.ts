@@ -56,7 +56,7 @@ export class LogisticOperatorService {
     updateLogisticOperatorDto: UpdateLogisticOperatorDto,
   ): Promise<ResponseLogisticOperatorDto> {
     try {
-      const logisticOperator = await this.findOne(id);
+      const logisticOperator = await this.repository.findOne(id);
       if (!logisticOperator) {
         throw new NotFoundException('Logistic Operator not found');
       }
@@ -73,7 +73,7 @@ export class LogisticOperatorService {
 
   async remove(id: string): Promise<ResponseLogisticOperatorDto> {
     try {
-      const logisticOperator = await this.findOne(id);
+      const logisticOperator = await this.repository.findOne(id);
       if (!logisticOperator) {
         throw new NotFoundException('Logistic Operator not found');
       }
