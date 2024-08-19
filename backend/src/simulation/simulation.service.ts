@@ -39,7 +39,12 @@ export class SimulationService {
       fromAdCoordinates.lng,
     );
     const fasterOperator = await this.findFasterLogisticOperator(distance);
-    const cheaperOperator = await this.findCheaperLogisticOperator(distance);
+    const cheaperOperator = await this.findCheaperLogisticOperator(
+      distance,
+      createSimulationDto.productHeight,
+      createSimulationDto.productWidth,
+      createSimulationDto.productLength,
+    );
     try {
       const simulation = await this.repository.create(createSimulationDto);
       return {
@@ -81,24 +86,38 @@ export class SimulationService {
     return sortedResults[0];
   }
 
-  private async findCheaperLogisticOperator(distance: number) {
+  private async findCheaperLogisticOperator(
+    distance: number,
+    productHeight: number,
+    productWidth: number,
+    productLength: number,
+  ) {
     const logisticOperators: ResponseLogisticOperatorDto[] =
       await this.logisticOperatorService.findAll();
     const promises = logisticOperators.map(async (operator) => {
       if (distance <= 100) {
         return {
           operator: operator,
-          price: operator.distanceMult * distance,
+          price:
+            operator.distanceMult *
+            ((productHeight * productWidth * productLength) /
+              operator.cubicFactor),
         };
       } else if (distance <= 500) {
         return {
           operator: operator,
-          price: operator.distanceMult100 * distance,
+          price:
+            operator.distanceMult100 *
+            ((productHeight * productWidth * productLength) /
+              operator.cubicFactor),
         };
       } else {
         return {
           operator: operator,
-          price: operator.distanceMult500 * distance,
+          price:
+            operator.distanceMult500 *
+            ((productHeight * productWidth * productLength) /
+              operator.cubicFactor),
         };
       }
     });
