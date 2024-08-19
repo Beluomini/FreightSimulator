@@ -10,7 +10,7 @@ datasource db {
 model LogisticOperator {
   id              String   @id @default(uuid())
   name            String
-  weightCost      Float
+  cubicFactor     Float
   distanceMult    Float
   distanceMult100 Float
   distanceMult500 Float
@@ -30,8 +30,7 @@ model Simulation {
   toAddress       String
   productHeight   Float
   productWidth    Float
-  productDepth    Float
-  productWeight   Float
+  productLength   Float
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 

@@ -2,7 +2,7 @@
 CREATE TABLE "logistic-operator" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "weightCost" DOUBLE PRECISION NOT NULL,
+    "cubicFactor" DOUBLE PRECISION NOT NULL,
     "distanceMult" DOUBLE PRECISION NOT NULL,
     "distanceMult100" DOUBLE PRECISION NOT NULL,
     "distanceMult500" DOUBLE PRECISION NOT NULL,
@@ -23,8 +23,7 @@ CREATE TABLE "simulation" (
     "toAddress" TEXT NOT NULL,
     "productHeight" DOUBLE PRECISION NOT NULL,
     "productWidth" DOUBLE PRECISION NOT NULL,
-    "productDepth" DOUBLE PRECISION NOT NULL,
-    "productWeight" DOUBLE PRECISION NOT NULL,
+    "productLength" DOUBLE PRECISION NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
