@@ -8,10 +8,9 @@ import { SimulationAPIResponse } from "../types/simulation";
 
 const formSchema = z.object({
   userName: z.string(),
-  prodHeight: z.number().int().positive(),
-  prodWidth: z.number().int().positive(),
-  prodDepth: z.number().int().positive(),
-  prodWeight: z.number().int().positive(),
+  productHeight: z.number().int().positive(),
+  productWidth: z.number().int().positive(),
+  productLenght: z.number().int().positive(),
   cep1: z.string().length(8, { message: "CEP deve conter apenas números (8)" }),
   country1: z.string().min(1, { message: "Country is required" }),
   state1: z.string().length(2, { message: "State must be 2 characters (UF)" }),
@@ -48,10 +47,9 @@ export default function Form({ onFormSubmit }: FormProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       userName: "John Doe",
-      prodHeight: 10,
-      prodWidth: 10,
-      prodDepth: 10,
-      prodWeight: 10,
+      productHeight: 10,
+      productWidth: 10,
+      productLenght: 10,
       cep1: "12345678",
       country1: "Brazil",
       state1: "RJ",
@@ -101,10 +99,9 @@ export default function Form({ onFormSubmit }: FormProps) {
           clientName: data.userName,
           fromAddress: adressFrom,
           toAddress: adressTo,
-          productHeight: data.prodHeight,
-          productWidth: data.prodWidth,
-          productDepth: data.prodDepth,
-          productWeight: data.prodWeight,
+          productHeight: data.productHeight,
+          productWidth: data.productWidth,
+          productDepth: data.productLenght,
         },
       };
 
@@ -144,7 +141,7 @@ export default function Form({ onFormSubmit }: FormProps) {
       </div>
 
       {/* Dimensões do Produto */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-3 gap-8">
         <div>
           <label
             htmlFor="height"
@@ -155,13 +152,13 @@ export default function Form({ onFormSubmit }: FormProps) {
           <input
             type="number"
             id="height"
-            {...register("prodHeight")}
+            {...register("productHeight")}
             placeholder="cm"
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
-          {errors.prodHeight?.message && (
+          {errors.productHeight?.message && (
             <div className="text-red-500 text-xs mt-1">
-              {errors.prodHeight?.message}
+              {errors.productHeight?.message}
             </div>
           )}
         </div>
@@ -175,13 +172,13 @@ export default function Form({ onFormSubmit }: FormProps) {
           <input
             type="number"
             id="width"
-            {...register("prodWidth")}
+            {...register("productWidth")}
             placeholder="cm"
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
-          {errors.prodWidth?.message && (
+          {errors.productWidth?.message && (
             <div className="text-red-500 text-xs mt-1">
-              {errors.prodWidth?.message}
+              {errors.productWidth?.message}
             </div>
           )}
         </div>
@@ -195,33 +192,13 @@ export default function Form({ onFormSubmit }: FormProps) {
           <input
             type="number"
             id="depth"
-            {...register("prodDepth")}
+            {...register("productLenght")}
             placeholder="cm"
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
-          {errors.prodDepth?.message && (
+          {errors.productLenght?.message && (
             <div className="text-red-500 text-xs mt-1">
-              {errors.prodDepth?.message}
-            </div>
-          )}
-        </div>
-        <div>
-          <label
-            htmlFor="weight"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Weight
-          </label>
-          <input
-            type="number"
-            id="weight"
-            {...register("prodWeight")}
-            placeholder="Kg"
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-          {errors.prodWeight?.message && (
-            <div className="text-red-500 text-xs mt-1">
-              {errors.prodWeight?.message}
+              {errors.productLenght?.message}
             </div>
           )}
         </div>

@@ -41,12 +41,12 @@ export default function Home() {
             <Form onFormSubmit={handleFormSubmit} />
           </div>
           <div className="md:w-1/3 flex flex-col justify-between mx-4 mb-5 my-5 rounded-lg">
-            <div className=" p-5 border bg-slate-200 rounded-lg">
+            <div className="flex-grow p-5 border bg-slate-200 rounded-lg">
               <SimulationData data={simulationData} />
             </div>
-            <div className="max-h-[14rem] overflow-y-auto p-5 border bg-slate-200 rounded-lg">
-              <LOList />
-            </div>
+          </div>
+          <div className="flex-grow max-h-[20rem] mx-[7.8%] mb-3 overflow-y-auto p-5 border bg-slate-200 rounded-lg">
+            <LOList />
           </div>
         </div>
       </div>
