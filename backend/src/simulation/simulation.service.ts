@@ -38,18 +38,10 @@ export class SimulationService {
       fromAdCoordinates.lat,
       fromAdCoordinates.lng,
     );
-    const fasterOperator = await this.findFasterLogisticOperator(
-      distance,
-      createSimulationDto.productHeight,
-      createSimulationDto.productWidth,
-      createSimulationDto.productLength,
-    );
-    const cheaperOperator = await this.findCheaperLogisticOperator(
-      distance,
-      createSimulationDto.productHeight,
-      createSimulationDto.productWidth,
-      createSimulationDto.productLength,
-    );
+    const [fasterOperator, cheaperOperator] = await Promise.all([
+      this.findLogisticOperator(distance, createSimulationDto, 'time'),
+      this.findLogisticOperator(distance, createSimulationDto, 'price'),
+    ]);
     try {
       const simulation = await this.repository.create(createSimulationDto);
       return {
@@ -67,89 +59,47 @@ export class SimulationService {
     }
   }
 
-  private async findFasterLogisticOperator(
+  private async findLogisticOperator(
     distance: number,
-    productHeight: number,
-    productWidth: number,
-    productLength: number,
+    { productHeight, productWidth, productLength }: CreateSimulationDto,
+    sortBy: 'time' | 'price',
   ) {
     const logisticOperators: ResponseLogisticOperatorDto[] =
       await this.logisticOperatorService.findAll();
-    const promises = logisticOperators.map(async (operator) => {
-      if (distance <= 100) {
-        return {
-          operator: operator,
-          time: operator.deliveryTime,
-          price:
-            operator.distanceMult *
-            ((productHeight * productWidth * productLength) /
-              operator.cubicFactor),
-        };
-      } else if (distance <= 500) {
-        return {
-          operator: operator,
-          time: operator.deliveryTime100,
-          price:
-            operator.distanceMult100 *
-            ((productHeight * productWidth * productLength) /
-              operator.cubicFactor),
-        };
-      } else {
-        return {
-          operator: operator,
-          time: operator.deliveryTime500,
-          price:
-            operator.distanceMult500 *
-            ((productHeight * productWidth * productLength) /
-              operator.cubicFactor),
-        };
-      }
-    });
-    const results = await Promise.all(promises);
-    const sortedResults = results.sort((a, b) => a.time - b.time);
-    return sortedResults[0];
-  }
 
-  private async findCheaperLogisticOperator(
-    distance: number,
-    productHeight: number,
-    productWidth: number,
-    productLength: number,
-  ) {
-    const logisticOperators: ResponseLogisticOperatorDto[] =
-      await this.logisticOperatorService.findAll();
+    const calculatePrice = (
+      operator: ResponseLogisticOperatorDto,
+      distanceMultiplier: number,
+    ): number =>
+      distanceMultiplier *
+      ((productHeight * productWidth * productLength) / operator.cubicFactor);
+
     const promises = logisticOperators.map(async (operator) => {
+      let time: number, price: number;
+
       if (distance <= 100) {
-        return {
-          operator: operator,
-          time: operator.deliveryTime,
-          price:
-            operator.distanceMult *
-            ((productHeight * productWidth * productLength) /
-              operator.cubicFactor),
-        };
+        time = operator.deliveryTime;
+        price = parseFloat(
+          calculatePrice(operator, operator.distanceMult).toFixed(2),
+        );
       } else if (distance <= 500) {
-        return {
-          operator: operator,
-          time: operator.deliveryTime100,
-          price:
-            operator.distanceMult100 *
-            ((productHeight * productWidth * productLength) /
-              operator.cubicFactor),
-        };
+        time = operator.deliveryTime100;
+        price = parseFloat(
+          calculatePrice(operator, operator.distanceMult100).toFixed(2),
+        );
       } else {
-        return {
-          operator: operator,
-          time: operator.deliveryTime500,
-          price:
-            operator.distanceMult500 *
-            ((productHeight * productWidth * productLength) /
-              operator.cubicFactor),
-        };
+        time = operator.deliveryTime500;
+        price = parseFloat(
+          calculatePrice(operator, operator.distanceMult500).toFixed(2),
+        );
       }
+
+      return { operator, time, price };
     });
+
     const results = await Promise.all(promises);
-    const sortedResults = results.sort((a, b) => a.price - b.price);
+    const sortedResults = results.sort((a, b) => a[sortBy] - b[sortBy]);
+
     return sortedResults[0];
   }
 
