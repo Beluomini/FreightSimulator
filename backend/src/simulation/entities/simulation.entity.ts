@@ -5,6 +5,5 @@ export class Simulation {
   toAddress: string;
   productHeight: number;
   productWidth: number;
-  productDepth: number;
-  productWeight: number;
+  productLength: number;
 }

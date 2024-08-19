@@ -21,10 +21,7 @@ export class ResponseSimulationDto {
   productWidth: number;
 
   @ApiProperty()
-  productDepth: number;
-
-  @ApiProperty()
-  productWeight: number;
+  productLength: number;
 
   @ApiProperty()
   distance: number;

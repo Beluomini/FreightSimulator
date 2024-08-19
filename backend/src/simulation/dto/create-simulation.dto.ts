@@ -30,10 +30,5 @@ export class CreateSimulationDto {
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
-  productDepth: number;
-
-  @ApiProperty()
-  @IsNumber()
-  @IsNotEmpty()
-  productWeight: number;
+  productLength: number;
 }
