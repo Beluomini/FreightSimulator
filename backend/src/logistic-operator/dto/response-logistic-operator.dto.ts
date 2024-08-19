@@ -8,7 +8,7 @@ export class ResponseLogisticOperatorDto {
   name: string;
 
   @ApiProperty()
-  weightCost: number;
+  cubicFactor: number;
 
   @ApiProperty()
   distanceMult: number;

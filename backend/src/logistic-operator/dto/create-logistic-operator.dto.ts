@@ -11,7 +11,7 @@ export class CreateLogisticOperatorDto {
   @IsNumber()
   @IsNotEmpty()
   @Min(0)
-  weightCost: number;
+  cubicFactor: number;
 
   @ApiProperty()
   @IsNumber()
