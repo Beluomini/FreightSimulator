@@ -185,14 +185,14 @@ export default function Form({ onFormSubmit }: FormProps) {
         </div>
         <div>
           <label
-            htmlFor="depth"
+            htmlFor="length"
             className="block text-sm font-medium text-gray-700"
           >
-            Depth
+            Length
           </label>
           <input
             type="number"
-            id="depth"
+            id="length"
             {...register("productLenght")}
             placeholder="cm"
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
