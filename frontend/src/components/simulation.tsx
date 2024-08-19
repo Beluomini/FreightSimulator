@@ -6,15 +6,14 @@ const mockedSimulation = {
   clientName: " ",
   productHeight: 0,
   productWidth: 0,
-  productDepth: 0,
-  productWeight: 0,
+  productLength: 0,
   toAddress: " ",
   fromAddress: " ",
   distance: 0,
   fasterOperator: {
     id: " ",
     name: " ",
-    weightCost: 0,
+    cubicFactor: 0,
     distanceMult: 0,
     distanceMult100: 0,
     distanceMult500: 0,
@@ -24,10 +23,12 @@ const mockedSimulation = {
     createdAt: " ",
     updatedAt: " ",
   },
+  fasterOperatorTime: 0,
+  fasterOperatorPrice: 0,
   cheaperOperator: {
     id: " ",
     name: " ",
-    weightCost: 0,
+    cubicFactor: 0,
     distanceMult: 0,
     distanceMult100: 0,
     distanceMult500: 0,
@@ -37,6 +38,8 @@ const mockedSimulation = {
     createdAt: " ",
     updatedAt: " ",
   },
+  cheaperOperatorTime: 0,
+  cheaperOperatorPrice: 0,
 };
 
 interface SimulationDataProps {
@@ -95,7 +98,7 @@ export default function SimulationData({ data }: SimulationDataProps) {
             <div>
               <p className="text-gray-500">Lenght:</p>
               <div className="min-h-[20px] flex items-center justify-end border border-gray-500 pr-2 rounded-md">
-                <p className="sm:text-sm">{lastSimData.productDepth}</p>
+                <p className="sm:text-sm">{lastSimData.productLength}</p>
                 <p className="pl-1 text-gray-500 sm:text-sm">cm</p>
               </div>
             </div>
@@ -136,18 +139,14 @@ export default function SimulationData({ data }: SimulationDataProps) {
             <div>
               <p className="text-gray-500">Delivery Time</p>
               <div className="min-h-[25px] flex justify-end pr-2 items-center border border-gray-500 pl-2 rounded-md">
-                <p className="sm:text-sm">
-                  {lastSimData.fasterOperator.deliveryTime}
-                </p>
+                <p className="sm:text-sm">{lastSimData.fasterOperatorTime}</p>
                 <p className="pl-1 text-gray-500 sm:text-sm">days</p>
               </div>
             </div>
             <div>
               <p className="text-gray-500">Cost</p>
               <div className="min-h-[25px] flex justify-end pr-2 items-center border border-gray-500 pl-2 rounded-md">
-                <p className="sm:text-sm">
-                  {lastSimData.fasterOperator.weightCost}
-                </p>
+                <p className="sm:text-sm">{lastSimData.fasterOperatorPrice}</p>
                 <p className="pl-1 text-gray-500 sm:text-sm">R$</p>
               </div>
             </div>
@@ -166,18 +165,14 @@ export default function SimulationData({ data }: SimulationDataProps) {
             <div>
               <p className="text-gray-500">Delivery Time</p>
               <div className="min-h-[25px] flex justify-end pr-2 items-center border border-gray-500 pl-2 rounded-md">
-                <p className="sm:text-sm">
-                  {lastSimData.cheaperOperator.deliveryTime}
-                </p>
+                <p className="sm:text-sm">{lastSimData.cheaperOperatorTime}</p>
                 <p className="pl-1 text-gray-500 sm:text-sm">days</p>
               </div>
             </div>
             <div>
               <p className="text-gray-500">Cost</p>
               <div className="min-h-[25px] flex justify-end pr-2 items-center border border-gray-500 pl-2 rounded-md">
-                <p className="sm:text-sm">
-                  {lastSimData.cheaperOperator.weightCost}
-                </p>
+                <p className="sm:text-sm">{lastSimData.cheaperOperatorPrice}</p>
                 <p className="pl-1 text-gray-500 sm:text-sm">R$</p>
               </div>
             </div>

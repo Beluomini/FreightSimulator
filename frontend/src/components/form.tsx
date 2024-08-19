@@ -101,13 +101,14 @@ export default function Form({ onFormSubmit }: FormProps) {
           toAddress: adressTo,
           productHeight: data.productHeight,
           productWidth: data.productWidth,
-          productDepth: data.productLenght,
+          productLength: data.productLenght,
         },
       };
 
       const response = await axios(config);
       if (response.status === 200 || response.status === 201) {
         onFormSubmit(response.data);
+        setResult("");
         setResultColor("text-green-500");
         reset();
       }

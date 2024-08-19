@@ -5,13 +5,16 @@ export interface SimulationResponse {
   clientName: string;
   productHeight: number;
   productWidth: number;
-  productDepth: number;
-  productWeight: number;
+  productLength: number;
   toAddress: string;
   fromAddress: string;
   distance: number;
   fasterOperator: LogisticOperatorResponse;
+  fasterOperatorTime: number;
+  fasterOperatorPrice: number;
   cheaperOperator: LogisticOperatorResponse;
+  cheaperOperatorTime: number;
+  cheaperOperatorPrice: number;
 }
 
 export interface SimulationAPIResponse {
@@ -25,6 +28,5 @@ export interface SimulationRequest {
   fromAddress: string;
   productHeight: number;
   productWidth: number;
-  productDepth: number;
-  productWeight: number;
+  productLength: number;
 }

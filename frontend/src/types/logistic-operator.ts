@@ -1,7 +1,7 @@
 export interface LogisticOperatorResponse {
   id: string;
   name: string;
-  weightCost: number;
+  cubicFactor: number;
   distanceMult: number;
   distanceMult100: number;
   distanceMult500: number;
