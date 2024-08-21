@@ -26,8 +26,7 @@ export default function LOList() {
         setData(response.data.data);
       } catch (error) {
         setData(mockedLogisticOperators);
-        setError("Erro ao buscar dados de operadores logisticos");
-        console.error("Erro ao buscar dados de operadores logisticos:", error);
+        setError(""); // Erro ao buscar dados de operadores logisticos
       } finally {
         setLoading(false);
       }

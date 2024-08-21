@@ -30,3 +30,13 @@ export interface SimulationRequest {
   productWidth: number;
   productLength: number;
 }
+
+export interface SimulationDto {
+  id: string;
+  clientName: string;
+  toAddress: string;
+  fromAddress: string;
+  productHeight: number;
+  productWidth: number;
+  productLength: number;
+}

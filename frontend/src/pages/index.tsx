@@ -5,6 +5,7 @@ import LOList from "../components/logisticOperatorsList";
 import SimulationData from "../components/simulation";
 import { useState } from "react";
 import { SimulationAPIResponse } from "../types/simulation";
+import SimulationList from "../components/simulationList";
 
 export default function Home() {
   const [simulationData, setSimulationData] = useState<SimulationAPIResponse>();
@@ -45,7 +46,12 @@ export default function Home() {
               <SimulationData data={simulationData} />
             </div>
           </div>
-          <div className="flex-grow max-h-[20rem] mx-[7.8%] mb-3 overflow-y-auto p-5 border bg-slate-200 rounded-lg">
+        </div>
+        <div className="flex flex-row justify-center mb-3">
+          <div className="flex flex-grow max-h-[25rem] ml-[7.8%] mr-4 overflow-y-auto p-5 border bg-slate-200 rounded-lg">
+            <SimulationList />
+          </div>
+          <div className="md:w-1/4 max-h-[25rem] mr-[7.8%] overflow-y-auto p-5 border bg-slate-200 rounded-lg">
             <LOList />
           </div>
         </div>
