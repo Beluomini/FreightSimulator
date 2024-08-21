@@ -6,8 +6,8 @@ import { LogisticOperatorService } from '../logistic-operator/logistic-operator.
 import { PrismaService } from '../database/prisma.service';
 import { LogisticOperatorRepository } from '../logistic-operator/logistic-operator.repository';
 import { calculateDistance } from '../utils/distanceCalculator';
-import * as utils from '../utils/distanceCalculator';
 import { ResponseLogisticOperatorDto } from 'src/logistic-operator/dto/response-logistic-operator.dto';
+import { InternalServerErrorException } from '@nestjs/common';
 
 describe('SimulationService', () => {
   let service: SimulationService;
@@ -102,17 +102,20 @@ describe('SimulationService', () => {
   describe('create', () => {
     it('should create a simulation', async () => {
       jest.spyOn(repository, 'create').mockResolvedValue(mockSimulation);
-      jest.spyOn(coordinatesService, 'getCoordinates').mockResolvedValue({
+      jest.spyOn(coordinatesService, 'getCoordinates').mockResolvedValueOnce({
         lat: -23.55052,
         lng: -46.6333,
       });
-      jest.spyOn(utils, 'calculateDistance').mockImplementation(() => 30);
+      jest.spyOn(coordinatesService, 'getCoordinates').mockResolvedValueOnce({
+        lat: -23.65052,
+        lng: -46.6333,
+      });
       jest
         .spyOn(logisticOperatorService, 'findAll')
         .mockResolvedValue(mockOperatorList);
       expect(await service.create(mockSimulation)).toEqual({
         ...mockSimulation,
-        distance: 30,
+        distance: 11.119,
         fasterOperator: mockOperatorList[0],
         fasterOperatorPrice: 33.33,
         fasterOperatorTime: 10,
@@ -120,6 +123,69 @@ describe('SimulationService', () => {
         cheaperOperatorPrice: 10,
         cheaperOperatorTime: 20,
       });
+    });
+  });
+
+  describe('create - find all logistic operators error', () => {
+    it('should throw an error in the logistic operators findall method', async () => {
+      jest.spyOn(repository, 'create').mockResolvedValue(mockSimulation);
+      jest.spyOn(coordinatesService, 'getCoordinates').mockResolvedValueOnce({
+        lat: -23.55052,
+        lng: -46.6333,
+      });
+      jest.spyOn(coordinatesService, 'getCoordinates').mockResolvedValueOnce({
+        lat: -23.65052,
+        lng: -46.6333,
+      });
+      jest
+        .spyOn(logisticOperatorService, 'findAll')
+        .mockRejectedValue(new Error());
+      try {
+        await service.create(mockSimulation);
+      } catch (error) {
+        expect(error.message).toBe('Error fetching Logistic Operators');
+        expect(error.status).toBe(500);
+      }
+    });
+  });
+
+  describe('create - simulation error', () => {
+    it('should throw an error in the simulations create method', async () => {
+      jest.spyOn(coordinatesService, 'getCoordinates').mockResolvedValueOnce({
+        lat: -23.55052,
+        lng: -46.6333,
+      });
+      jest.spyOn(coordinatesService, 'getCoordinates').mockResolvedValueOnce({
+        lat: -23.65052,
+        lng: -46.6333,
+      });
+      jest
+        .spyOn(logisticOperatorService, 'findAll')
+        .mockResolvedValue(mockOperatorList);
+      jest.spyOn(repository, 'create').mockRejectedValue(new Error());
+      try {
+        await service.create(mockSimulation);
+      } catch (error) {
+        expect(error.message).toBe('Error creating Simulation');
+        expect(error.status).toBe(500);
+      }
+    });
+  });
+
+  describe('create - geocoding error', () => {
+    it('should throw an error in the external API', async () => {
+      jest.clearAllMocks();
+      jest
+        .spyOn(coordinatesService, 'getCoordinates')
+        .mockRejectedValue(
+          new InternalServerErrorException('Error getting coordinates'),
+        );
+      try {
+        await service.create(mockSimulation);
+      } catch (error) {
+        expect(error.message).toBe('Error getting coordinates');
+        expect(error.status).toBe(500);
+      }
     });
   });
 });
