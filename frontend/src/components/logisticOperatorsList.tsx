@@ -5,6 +5,13 @@ const mockedLogisticOperators = [
   { id: 1, name: "Logistic Operator 1" },
   { id: 2, name: "Logistic Operator 2" },
   { id: 3, name: "Logistic Operator 3" },
+  { id: 3, name: "Logistic Operator 3" },
+  { id: 3, name: "Logistic Operator 3" },
+  { id: 3, name: "Logistic Operator 3" },
+  { id: 3, name: "Logistic Operator 3" },
+  { id: 3, name: "Logistic Operator 3" },
+  { id: 3, name: "Logistic Operator 3" },
+  { id: 3, name: "Logistic Operator 3" },
 ];
 
 interface LogisticOperator {
@@ -39,17 +46,17 @@ export default function LOList() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="">
+    <div className="flex flex-col flex-grow">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         List of Logistic Operators
       </h2>
-      <ul className="space-y-4">
+      <div className="flex flex-col gap-2 overflow-y-auto scrollbar-thin">
         {data.map((lo) => (
-          <li key={lo.id}>
+          <div key={lo.id} className="flex flex-col p-2">
             <h3>{lo.name}</h3>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

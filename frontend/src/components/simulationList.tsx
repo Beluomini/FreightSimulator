@@ -86,11 +86,11 @@ export default function SimulationList() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="">
+    <div className="flex flex-col flex-grow">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         List of Simulations
       </h2>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 overflow-y-auto scrollbar-thin">
         {data.map((simulation) => (
           <div key={simulation.id} className="flex flex-col p-2">
             <div className="flex flex-wrap">

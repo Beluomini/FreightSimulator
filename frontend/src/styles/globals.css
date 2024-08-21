@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilização personalizada para barra de rolagem */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;  /* Largura fina da barra de rolagem */
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #A0AEC0; /* Cor cinza da barra de rolagem */
+  border-radius: 10px; /* Bordas arredondadas */
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background-color: #E2E8F0; /* Cor cinza mais clara para o trilho */
+  border-radius: 10px; /* Bordas arredondadas para o trilho */
+}

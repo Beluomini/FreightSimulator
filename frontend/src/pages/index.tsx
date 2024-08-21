@@ -48,10 +48,10 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-row justify-center mb-3">
-          <div className="flex flex-grow max-h-[25rem] ml-[7.8%] mr-4 overflow-y-auto p-5 border bg-slate-200 rounded-lg">
+          <div className="flex flex-grow max-h-[25rem] ml-[7.8%] mr-4 p-5 border bg-slate-200 rounded-lg">
             <SimulationList />
           </div>
-          <div className="md:w-1/4 max-h-[25rem] mr-[7.8%] overflow-y-auto p-5 border bg-slate-200 rounded-lg">
+          <div className="flex md:w-1/4 max-h-[25rem] mr-[7.8%] p-5 border bg-slate-200 rounded-lg">
             <LOList />
           </div>
         </div>
