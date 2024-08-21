@@ -120,6 +120,16 @@ export class SimulationService {
     }
   }
 
+  async findTen(index: number) {
+    try {
+      const skip = index * 10;
+      const take = 10;
+      return await this.repository.findTen(skip, take);
+    } catch (error) {
+      throw new InternalServerErrorException('Error fetching Simulations');
+    }
+  }
+
   async findOne(id: string) {
     try {
       const simulation = await this.repository.findOne(id);

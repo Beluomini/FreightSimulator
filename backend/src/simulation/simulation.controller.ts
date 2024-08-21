@@ -6,6 +6,8 @@ import {
   Param,
   Delete,
   HttpStatus,
+  Query,
+  BadRequestException,
 } from '@nestjs/common';
 import { SimulationService } from './simulation.service';
 import { CreateSimulationDto } from './dto/create-simulation.dto';
@@ -54,6 +56,31 @@ export class SimulationController {
   })
   async findAll() {
     const list = await this.simulationService.findAll();
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Simulations fetched successfully',
+      data: list,
+    };
+  }
+
+  @Get('ten')
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Simulations fetched',
+  })
+  @ApiResponse({
+    status: HttpStatus.INTERNAL_SERVER_ERROR,
+    description: 'Error fetching Simulations',
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Index is required',
+  })
+  async findTen(@Query('index') index: number) {
+    if (!index || index < 0 || isNaN(index) || index == undefined) {
+      throw new BadRequestException('Index is required');
+    }
+    const list = await this.simulationService.findTen(index);
     return {
       statusCode: HttpStatus.OK,
       message: 'Simulations fetched successfully',

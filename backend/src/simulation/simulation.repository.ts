@@ -17,6 +17,16 @@ export class SimulationRepository {
     return await this.prisma.simulation.findMany();
   }
 
+  async findTen(skip: number, take: number) {
+    return await this.prisma.simulation.findMany({
+      skip,
+      take,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
+
   async findOne(id: string) {
     return await this.prisma.simulation.findUnique({
       where: { id },
