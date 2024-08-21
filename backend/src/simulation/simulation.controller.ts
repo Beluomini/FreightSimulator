@@ -3,14 +3,12 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   HttpStatus,
 } from '@nestjs/common';
 import { SimulationService } from './simulation.service';
 import { CreateSimulationDto } from './dto/create-simulation.dto';
-import { UpdateSimulationDto } from './dto/update-simulation.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Simulation')
@@ -30,6 +28,10 @@ export class SimulationController {
   @ApiResponse({
     status: HttpStatus.INTERNAL_SERVER_ERROR,
     description: 'Error creating Simulation',
+  })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'Address not found',
   })
   async create(@Body() createSimulationDto: CreateSimulationDto) {
     const createdSimulation =
@@ -81,53 +83,20 @@ export class SimulationController {
     };
   }
 
-  @Patch(':id')
+  @Delete()
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'Simulation updated',
-  })
-  @ApiResponse({
-    status: HttpStatus.NOT_FOUND,
-    description: 'Simulation not found',
+    description: 'Simulations removed',
   })
   @ApiResponse({
     status: HttpStatus.INTERNAL_SERVER_ERROR,
-    description: 'Error updating Simulation',
+    description: 'Error removing Simulations',
   })
-  async update(
-    @Param('id') id: string,
-    @Body() updateSimulationDto: UpdateSimulationDto,
-  ) {
-    const updatedSimulation = await this.simulationService.update(
-      id,
-      updateSimulationDto,
-    );
+  async removeAll() {
+    await this.simulationService.removeAll();
     return {
       statusCode: HttpStatus.OK,
-      message: 'Simulation updated successfully',
-      data: updatedSimulation,
-    };
-  }
-
-  @Delete(':id')
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: 'Simulation removed',
-  })
-  @ApiResponse({
-    status: HttpStatus.NOT_FOUND,
-    description: 'Simulation not found',
-  })
-  @ApiResponse({
-    status: HttpStatus.INTERNAL_SERVER_ERROR,
-    description: 'Error removing Simulation',
-  })
-  async remove(@Param('id') id: string) {
-    await this.simulationService.remove(id);
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Simulation removed successfully',
-      data: id,
+      message: 'Simulations removed successfully',
     };
   }
 }

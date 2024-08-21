@@ -35,4 +35,8 @@ export class SimulationRepository {
       where: { id },
     });
   }
+
+  async removeAll() {
+    return await this.prisma.simulation.deleteMany({});
+  }
 }
