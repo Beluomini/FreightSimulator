@@ -35,7 +35,7 @@ describe('LogisticOperatorController', () => {
         {
           id: '1',
           name: 'Logistic Operator Test',
-          weightCost: 2,
+          cubicFactor: 2,
           distanceMult: 1,
           distanceMult100: 1.2,
           distanceMult500: 2,
@@ -58,7 +58,7 @@ describe('LogisticOperatorController', () => {
       const testLO = {
         id: '1',
         name: 'Logistic Operator Test',
-        weightCost: 2,
+        cubicFactor: 2,
         distanceMult: 1,
         distanceMult100: 1.2,
         distanceMult500: 2,
@@ -80,7 +80,7 @@ describe('LogisticOperatorController', () => {
       const testLO = {
         id: '1',
         name: 'Logistic Operator Test',
-        weightCost: 2,
+        cubicFactor: 2,
         distanceMult: 1,
         distanceMult100: 1.2,
         distanceMult500: 2,
@@ -102,7 +102,7 @@ describe('LogisticOperatorController', () => {
       const testLO = {
         id: '1',
         name: 'Logistic Operator Test',
-        weightCost: 2,
+        cubicFactor: 2,
         distanceMult: 1,
         distanceMult100: 1.2,
         distanceMult500: 2,

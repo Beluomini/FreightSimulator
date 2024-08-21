@@ -37,7 +37,7 @@ describe('LogisticOperatorService', () => {
         {
           id: '1',
           name: 'Logistic Operator Test',
-          weightCost: 2,
+          cubicFactor: 2,
           distanceMult: 1,
           distanceMult100: 1.2,
           distanceMult500: 2,
@@ -57,7 +57,7 @@ describe('LogisticOperatorService', () => {
       const testLO = {
         id: '1',
         name: 'Logistic Operator Test',
-        weightCost: 2,
+        cubicFactor: 2,
         distanceMult: 1,
         distanceMult100: 1.2,
         distanceMult500: 2,
@@ -89,7 +89,7 @@ describe('LogisticOperatorService', () => {
       const newLO = {
         id: '1',
         name: 'Logistic Operator Test',
-        weightCost: 2,
+        cubicFactor: 2,
         distanceMult: 1,
         distanceMult100: 1.2,
         distanceMult500: 2,
@@ -107,7 +107,7 @@ describe('LogisticOperatorService', () => {
     it('should update a logistic operator', async () => {
       const updatedLO = {
         name: 'Logistic Operator Test Updated',
-        weightCost: 2,
+        cubicFactor: 2,
         distanceMult: 1,
         distanceMult100: 1.2,
         distanceMult500: 2,
