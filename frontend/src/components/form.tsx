@@ -8,9 +8,9 @@ import { SimulationAPIResponse } from "../types/simulation";
 
 const formSchema = z.object({
   userName: z.string().min(1, { message: "User name is required" }),
-  productHeight: z.number().int().positive(),
-  productWidth: z.number().int().positive(),
-  productLenght: z.number().int().positive(),
+  productHeight: z.string().min(1, { message: "Height name is required" }),
+  productWidth: z.string().min(1, { message: "Width name is required" }),
+  productLenght: z.string().min(1, { message: "Length name is required" }),
   cep1: z.string().length(8, { message: "CEP must contain only numbers (8)" }),
   country1: z.string().min(1, { message: "Country is required" }),
   state1: z.string().length(2, { message: "State must be 2 characters (UF)" }),
@@ -79,12 +79,13 @@ export default function Form({ onFormSubmit }: FormProps) {
           clientName: data.userName,
           fromAddress: adressFrom,
           toAddress: adressTo,
-          productHeight: data.productHeight,
-          productWidth: data.productWidth,
-          productLength: data.productLenght,
+          productHeight: parseFloat(data.productHeight),
+          productWidth: parseFloat(data.productWidth),
+          productLength: parseFloat(data.productLenght),
         },
       };
 
+      console.log(data);
       const response = await axios(config);
       if (response.status === 200 || response.status === 201) {
         onFormSubmit(response.data);

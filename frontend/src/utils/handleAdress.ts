@@ -21,9 +21,12 @@ export function handleAdress(
     cep1 +
     "%2C%20" +
     country1;
+
+  // troca espaços por %20, virgulas por %2C, remove acentos e caracteres especiais
   const processAddressStr = addressStr
-    .replace(" ", "%20")
+    .replaceAll(" ", "%20")
+    .replaceAll(",", "%2C")
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+    .replaceAll(/[\u0300-\u036f]/g, "");
   return processAddressStr;
 }
