@@ -74,9 +74,14 @@ export class SimulationService {
       const calculatePrice = (
         operator: ResponseLogisticOperatorDto,
         distanceMultiplier: number,
-      ): number =>
-        distanceMultiplier *
-        ((productHeight * productWidth * productLength) / operator.cubicFactor);
+      ): number => {
+        const cubicPrice =
+          (productHeight * productWidth * productLength) / operator.cubicFactor;
+        if (cubicPrice < 6) {
+          return 6 * distanceMultiplier;
+        }
+        return cubicPrice * distanceMultiplier;
+      };
 
       const promises = logisticOperators.map(async (operator) => {
         let time: number, price: number;
