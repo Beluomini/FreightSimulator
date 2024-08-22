@@ -7,24 +7,24 @@ import { handleAdress } from "../utils/handleAdress";
 import { SimulationAPIResponse } from "../types/simulation";
 
 const formSchema = z.object({
-  userName: z.string(),
+  userName: z.string().min(1, { message: "User name is required" }),
   productHeight: z.number().int().positive(),
   productWidth: z.number().int().positive(),
   productLenght: z.number().int().positive(),
-  cep1: z.string().length(8, { message: "CEP deve conter apenas números (8)" }),
+  cep1: z.string().length(8, { message: "CEP must contain only numbers (8)" }),
   country1: z.string().min(1, { message: "Country is required" }),
   state1: z.string().length(2, { message: "State must be 2 characters (UF)" }),
   city1: z.string().min(1, { message: "City is required" }),
   neighborhood1: z.string().min(1, { message: "Neighborhood is required" }),
-  address1: z.string().min(1, { message: "Logradouro é obrigatório" }),
-  number1: z.string().min(1, { message: "Número é obrigatório" }),
-  cep2: z.string().length(8, { message: "CEP deve conter apenas números (8)" }),
+  address1: z.string().min(1, { message: "Street is required" }),
+  number1: z.string().min(1, { message: "Number is required" }),
+  cep2: z.string().length(8, { message: "CEP must contain only numbers (8)" }),
   country2: z.string().min(1, { message: "Country is required" }),
   state2: z.string().length(2, { message: "State must be 2 characters (UF)" }),
   city2: z.string().min(1, { message: "City is required" }),
   neighborhood2: z.string().min(1, { message: "Neighborhood is required" }),
-  address2: z.string().min(1, { message: "Logradouro é obrigatório" }),
-  number2: z.string().min(1, { message: "Número é obrigatório" }),
+  address2: z.string().min(1, { message: "Street is required" }),
+  number2: z.string().min(1, { message: "Number is required" }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -45,26 +45,6 @@ export default function Form({ onFormSubmit }: FormProps) {
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      userName: "John Doe",
-      productHeight: 10,
-      productWidth: 10,
-      productLenght: 10,
-      cep1: "12345678",
-      country1: "Brazil",
-      state1: "RJ",
-      city1: "Rio de Janeiro",
-      neighborhood1: "Copacabana",
-      address1: "Rua 1",
-      number1: "123",
-      cep2: "87654321",
-      country2: "Brazil",
-      state2: "SP",
-      city2: "São Paulo",
-      neighborhood2: "Jardins",
-      address2: "Rua 2",
-      number2: "456",
-    },
   });
 
   const processForm = async (data: FormData) => {
@@ -131,6 +111,7 @@ export default function Form({ onFormSubmit }: FormProps) {
         <input
           type="text"
           id="username"
+          placeholder="User Name"
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           {...register("userName")}
         />
@@ -225,7 +206,7 @@ export default function Form({ onFormSubmit }: FormProps) {
               type="text"
               id="cep1"
               {...register("cep1")}
-              placeholder="CEP"
+              placeholder="CEP (Just numbers)"
               className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
             {errors.cep1?.message && (
@@ -243,7 +224,7 @@ export default function Form({ onFormSubmit }: FormProps) {
               type="text"
               id="address1"
               {...register("address1")}
-              placeholder="Nome da Rua"
+              placeholder="Street"
               className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
             {errors.address1?.message && (
@@ -325,7 +306,7 @@ export default function Form({ onFormSubmit }: FormProps) {
                   type="text"
                   id="state1"
                   {...register("state1")}
-                  placeholder="State (Ex: RJ)"
+                  placeholder="XX"
                   maxLength={2}
                   className="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
@@ -378,7 +359,7 @@ export default function Form({ onFormSubmit }: FormProps) {
               type="text"
               id="cep2"
               {...register("cep2")}
-              placeholder="CEP"
+              placeholder="CEP (Just numbers)"
               className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
             {errors.cep2?.message && (
@@ -396,7 +377,7 @@ export default function Form({ onFormSubmit }: FormProps) {
               type="text"
               id="address2"
               {...register("address2")}
-              placeholder="Nome da Rua"
+              placeholder="Street"
               className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
             {errors.address2?.message && (
@@ -478,7 +459,7 @@ export default function Form({ onFormSubmit }: FormProps) {
                   type="text"
                   id="state2"
                   {...register("state2")}
-                  placeholder="State (Ex: RJ)"
+                  placeholder="XX"
                   maxLength={2}
                   className="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
@@ -525,7 +506,7 @@ export default function Form({ onFormSubmit }: FormProps) {
             disabled={isSubmitting}
             onClick={handleSubmit(processForm)}
           >
-            {isSubmitting ? "Sending..." : "Send"}
+            {isSubmitting ? "Simulating..." : "Simulate"}
           </button>
         </div>
 

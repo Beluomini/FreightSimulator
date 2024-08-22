@@ -78,7 +78,7 @@ export default function SimulationData({ data }: SimulationDataProps) {
       </div>
 
       <div className="mb-2">
-        <p className="text-gray-500">Produto</p>
+        <p className="text-gray-500">Product</p>
         <div className="border border-gray-300 px-2 rounded-md">
           <div className="mb-2 grid grid-cols-3 gap-10">
             <div>
