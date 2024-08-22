@@ -1,9 +1,13 @@
-# Shipping Simulator
+# [Shipping Simulator](http://201.23.16.163:3000)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Current Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/Beluomini/ShippingSimulator) ![npm version](https://img.shields.io/badge/npm-10.7.0-green) 
 
 
 The goal of this project is to create an environment where you can calculate the value and shipping time of objects based on the distance they will be sent, their dimensions and their weight.
+
+### [💻 Try yourself](http://201.23.16.163:3000)
+
+### [🧾 See the API Docs](http://201.23.16.163:5001/docs)
 
 ## ⚙️ Configuration
 
@@ -58,6 +62,12 @@ It is necessary to insert the following environment variables:
 NEXT_PUBLIC_API_URL=FRONTED_API_URL
 ```
 
+## ☁️ Deploy
+
+### [💻 Try yourself](http://201.23.16.163:3000)
+
+### [🧾 See the API Docs](http://201.23.16.163:5001/docs)
+
 ## ▶️ Run 
 
 ### Using Docker
@@ -100,7 +110,7 @@ When the application is running, the ports referenced in the environment variabl
 
 ## 🧾 Documentation
 
-The documentation was written with Swagger and can be viwed when the app is runing in [{API_URL}/docs](http://localhost:5000/docs)
+The documentation was written with Swagger and can be viwed when the app is runing in [{API_URL}/docs](http://201.23.16.163:5001/docs)
 
 ## 🧪 Testing
 
