@@ -85,7 +85,6 @@ export default function Form({ onFormSubmit }: FormProps) {
         },
       };
 
-      console.log(data);
       const response = await axios(config);
       if (response.status === 200 || response.status === 201) {
         onFormSubmit(response.data);
