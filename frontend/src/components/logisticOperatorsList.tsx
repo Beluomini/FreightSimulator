@@ -1,19 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const mockedLogisticOperators = [
-  { id: 1, name: "Logistic Operator 1" },
-  { id: 2, name: "Logistic Operator 2" },
-  { id: 3, name: "Logistic Operator 3" },
-  { id: 3, name: "Logistic Operator 3" },
-  { id: 3, name: "Logistic Operator 3" },
-  { id: 3, name: "Logistic Operator 3" },
-  { id: 3, name: "Logistic Operator 3" },
-  { id: 3, name: "Logistic Operator 3" },
-  { id: 3, name: "Logistic Operator 3" },
-  { id: 3, name: "Logistic Operator 3" },
-];
-
 interface LogisticOperator {
   id: number;
   name: string;
@@ -32,8 +19,7 @@ export default function LOList() {
         );
         setData(response.data.data);
       } catch (error) {
-        setData(mockedLogisticOperators);
-        setError(""); // Erro ao buscar dados de operadores logisticos
+        setError("Erro ao buscar dados de operadores logisticos!");
       } finally {
         setLoading(false);
       }
