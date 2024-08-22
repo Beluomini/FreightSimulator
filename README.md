@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Current Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/Beluomini/ShippingSimulator) ![npm version](https://img.shields.io/badge/npm-10.7.0-green) 
 
+![image](https://github.com/user-attachments/assets/14db19e5-278d-43d3-9b4b-2876e1666a00)
 
 The goal of this project is to create an environment where you can calculate the value and shipping time of objects based on the distance they will be sent, their dimensions and their weight.
 
@@ -98,6 +99,19 @@ npx prisma migrate dev
 Finally, just run the app:
 
 ```bash
+npm run start:dev
+```
+
+The frontend can also be run via the terminal, for this you need need to navigate to the frontend directory and install the dependencies first 
+
+```bash
+npm install
+```
+
+Then run the application with the command:
+
+
+```bash
 npm run dev
 ```
 
@@ -110,13 +124,15 @@ When the application is running, the ports referenced in the environment variabl
 
 ## 🧾 Documentation
 
+![image](https://github.com/user-attachments/assets/de48d39b-7fed-4679-8fdb-8f6f9dd80eaf)
+
 The documentation was written with Swagger and can be viwed when the app is runing in [{API_URL}/docs](http://201.23.16.163:5001/docs)
 
 ## 🧪 Testing
 
 In this API was used Jest to unit tests, these tests aim to test the main functionalities.
 
-To start the automate tests just run:
+To start the automate tests just navigate to the backend directory and run:
 
 ```bash
 npm test
@@ -158,6 +174,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [TypeScript](https://www.typescriptlang.org/)
 - [Node](https://nodejs.org/en)
 - [Nest](https://nestjs.com/)
+- [React](https://react.dev/)
+- [Next](https://nextjs.org/)
 - [Jest](https://jestjs.io/pt-BR/)
 - [Prisma](https://www.prisma.io/)
 - [PostgreSQL](https://www.postgresql.org/)
