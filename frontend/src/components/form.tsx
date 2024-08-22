@@ -187,6 +187,159 @@ export default function Form({ onFormSubmit }: FormProps) {
       </div>
 
       <div className="grid grid-cols-2 gap-4">
+        {/* Endereço 2 */}
+        <div>
+          <label
+            htmlFor="addressFrom"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Address From
+          </label>
+          <div className="border border-gray-300 rounded-lg p-2">
+            <label
+              htmlFor="cep2"
+              className="block text-sm mt-2 pl-2 font-medium text-gray-700"
+            >
+              CEP
+            </label>
+            <input
+              type="text"
+              id="cep2"
+              {...register("cep2")}
+              placeholder="CEP (Just numbers)"
+              className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+            {errors.cep2?.message && (
+              <div className="text-red-500 text-xs mt-1">
+                {errors.cep2?.message}
+              </div>
+            )}
+            <label
+              htmlFor="address2"
+              className="block text-sm mt-2 pl-2 font-medium text-gray-700"
+            >
+              Address
+            </label>
+            <input
+              type="text"
+              id="address2"
+              {...register("address2")}
+              placeholder="Street"
+              className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+            {errors.address2?.message && (
+              <div className="text-red-500 text-xs mt-1">
+                {errors.address2?.message}
+              </div>
+            )}
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  htmlFor="number2"
+                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
+                >
+                  Number
+                </label>
+                <input
+                  type="text"
+                  id="number2"
+                  {...register("number2")}
+                  placeholder="Number"
+                  className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+                {errors.number2?.message && (
+                  <div className="text-red-500 text-xs mt-1">
+                    {errors.number2?.message}
+                  </div>
+                )}
+              </div>
+              <div>
+                <label
+                  htmlFor="neighborhood2"
+                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
+                >
+                  Neighborhood
+                </label>
+                <input
+                  type="text"
+                  id="neighborhood2"
+                  {...register("neighborhood2")}
+                  placeholder="Neighborhood"
+                  className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+                {errors.neighborhood2?.message && (
+                  <div className="text-red-500 text-xs mt-1">
+                    {errors.neighborhood2?.message}
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-6 gap-4">
+              <div className="col-span-3">
+                <label
+                  htmlFor="city2"
+                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
+                >
+                  City
+                </label>
+                <input
+                  type="text"
+                  id="city2"
+                  {...register("city2")}
+                  placeholder="City"
+                  className="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+                {errors.city2?.message && (
+                  <div className="text-red-500 text-xs mt-1">
+                    {errors.city2?.message}
+                  </div>
+                )}
+              </div>
+              <div className="col-span-1">
+                <label
+                  htmlFor="state2"
+                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
+                >
+                  State
+                </label>
+                <input
+                  type="text"
+                  id="state2"
+                  {...register("state2")}
+                  placeholder="XX"
+                  maxLength={2}
+                  className="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+                {errors.state2?.message && (
+                  <div className="text-red-500 text-xs mt-1">
+                    {errors.state2?.message}
+                  </div>
+                )}
+              </div>
+              <div className="col-span-2">
+                <label
+                  htmlFor="country2"
+                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
+                >
+                  Country
+                </label>
+                <input
+                  type="text"
+                  id="country2"
+                  {...register("country2")}
+                  placeholder="Country"
+                  className="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+                {errors.country2?.message && (
+                  <div className="text-red-500 text-xs mt-1">
+                    {errors.country2?.message}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Endereço 1 */}
         <div>
           <label
@@ -333,159 +486,6 @@ export default function Form({ onFormSubmit }: FormProps) {
                 {errors.country1?.message && (
                   <div className="text-red-500 text-xs mt-1">
                     {errors.country1?.message}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Endereço 2 */}
-        <div>
-          <label
-            htmlFor="addressTo2"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Address To
-          </label>
-          <div className="border border-gray-300 rounded-lg p-2">
-            <label
-              htmlFor="cep2"
-              className="block text-sm mt-2 pl-2 font-medium text-gray-700"
-            >
-              CEP
-            </label>
-            <input
-              type="text"
-              id="cep2"
-              {...register("cep2")}
-              placeholder="CEP (Just numbers)"
-              className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-            {errors.cep2?.message && (
-              <div className="text-red-500 text-xs mt-1">
-                {errors.cep2?.message}
-              </div>
-            )}
-            <label
-              htmlFor="address2"
-              className="block text-sm mt-2 pl-2 font-medium text-gray-700"
-            >
-              Address
-            </label>
-            <input
-              type="text"
-              id="address2"
-              {...register("address2")}
-              placeholder="Street"
-              className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-            {errors.address2?.message && (
-              <div className="text-red-500 text-xs mt-1">
-                {errors.address2?.message}
-              </div>
-            )}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label
-                  htmlFor="number2"
-                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
-                >
-                  Number
-                </label>
-                <input
-                  type="text"
-                  id="number2"
-                  {...register("number2")}
-                  placeholder="Number"
-                  className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                />
-                {errors.number2?.message && (
-                  <div className="text-red-500 text-xs mt-1">
-                    {errors.number2?.message}
-                  </div>
-                )}
-              </div>
-              <div>
-                <label
-                  htmlFor="neighborhood2"
-                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
-                >
-                  Neighborhood
-                </label>
-                <input
-                  type="text"
-                  id="neighborhood2"
-                  {...register("neighborhood2")}
-                  placeholder="Neighborhood"
-                  className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                />
-                {errors.neighborhood2?.message && (
-                  <div className="text-red-500 text-xs mt-1">
-                    {errors.neighborhood2?.message}
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className="grid grid-cols-6 gap-4">
-              <div className="col-span-3">
-                <label
-                  htmlFor="city2"
-                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
-                >
-                  City
-                </label>
-                <input
-                  type="text"
-                  id="city2"
-                  {...register("city2")}
-                  placeholder="City"
-                  className="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                />
-                {errors.city2?.message && (
-                  <div className="text-red-500 text-xs mt-1">
-                    {errors.city2?.message}
-                  </div>
-                )}
-              </div>
-              <div className="col-span-1">
-                <label
-                  htmlFor="state2"
-                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
-                >
-                  State
-                </label>
-                <input
-                  type="text"
-                  id="state2"
-                  {...register("state2")}
-                  placeholder="XX"
-                  maxLength={2}
-                  className="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                />
-                {errors.state2?.message && (
-                  <div className="text-red-500 text-xs mt-1">
-                    {errors.state2?.message}
-                  </div>
-                )}
-              </div>
-              <div className="col-span-2">
-                <label
-                  htmlFor="country2"
-                  className="block text-sm mt-2 pl-2 font-medium text-gray-700"
-                >
-                  Country
-                </label>
-                <input
-                  type="text"
-                  id="country2"
-                  {...register("country2")}
-                  placeholder="Country"
-                  className="mt-2 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                />
-                {errors.country2?.message && (
-                  <div className="text-red-500 text-xs mt-1">
-                    {errors.country2?.message}
                   </div>
                 )}
               </div>
