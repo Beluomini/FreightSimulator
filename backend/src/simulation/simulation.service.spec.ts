@@ -117,10 +117,10 @@ describe('SimulationService', () => {
         ...mockSimulation,
         distance: 11.119,
         fasterOperator: mockOperatorList[0],
-        fasterOperatorPrice: 33.33,
+        fasterOperatorPrice: 60,
         fasterOperatorTime: 10,
         cheaperOperator: mockOperatorList[1],
-        cheaperOperatorPrice: 10,
+        cheaperOperatorPrice: 30,
         cheaperOperatorTime: 20,
       });
     });
